@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'SF Server Documentation'
+project = 'SF Server'
 copyright = '2020, Solarillion Foundation'
 author = 'Solarillion Foundation'
 
