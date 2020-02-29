@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "docs/"
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "docs/"
+        pre-build-command: "apt-get update -y && apt-get install -y latexmk texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended"
+        build-command: "make latexpdf"
+    - uses: actions/upload-artifact@v1
+      with:
+        name: DocsWeb
+        path: docs/_build/html
+    - uses: actions/upload-artifact@v1
+      with:
+        name: DocsPDF
+        path: docs/_build/latex/sfserver.pdf
+    - name: Commit updates
+      run: |
+        git clone --single-branch --branch=gh-pages https://github.com/solarillion/ServerDocs.git
+        cp -r docs/_build/html/* gh-pages/
+        cd gh-pages
+        git config --local user.email "solarillion.server@gmail.com"
+        git config --local user.name "solarillion"
+        git add .
+        git commit -m "Updated docs" -a || true
+    - uses: ad-m/github-push-action@master
+      with:
+        branch: gh-pages
+        directory: gh-pages
+        github_token: ${{ secrets.GITHUB_TOKEN }}
