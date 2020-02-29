@@ -1,10 +1,10 @@
-.. SF Server Documentation documentation master file, created by
+.. SF Server Documentation master file, created by
    sphinx-quickstart on Sat Feb 29 23:25:26 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to SF Server Documentation's documentation!
-===================================================
+Welcome to the SF Server Documentation!
+=======================================
 
 .. toctree::
    :maxdepth: 2
