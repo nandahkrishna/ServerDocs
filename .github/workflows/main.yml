@@ -30,7 +30,7 @@ jobs:
         path: docs/_build/latex/sfserver.pdf
     - name: Commit updates
       run: |
-        git clone --single-branch --branch=gh-pages https://github.com/solarillion/ServerDocs.git
+        git clone --single-branch --branch=gh-pages https://github.com/solarillion/ServerDocs.git gh-pages
         cp -r docs/_build/html/* gh-pages/
         cd gh-pages
         git config --local user.email "solarillion.server@gmail.com"
